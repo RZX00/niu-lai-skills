@@ -25,7 +25,7 @@
 ### Claude Code plugin
 
 ```
-/plugin marketplace add RZX00/牛来-skills
+/plugin marketplace add RZX00/niu-lai-skills
 /plugin install niulai@niu-lai-skills
 ```
 
@@ -34,13 +34,13 @@
 **macOS / Linux / WSL**
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/RZX00/牛来-skills/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/RZX00/niu-lai-skills/main/install.sh | bash
 ```
 
 **Windows PowerShell**
 
 ```powershell
-irm https://raw.githubusercontent.com/RZX00/牛来-skills/main/install.ps1 | iex
+irm https://raw.githubusercontent.com/RZX00/niu-lai-skills/main/install.ps1 | iex
 ```
 
 ### Manual

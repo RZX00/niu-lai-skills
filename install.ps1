@@ -1,9 +1,9 @@
 # 牛来 skill installer (Windows / PowerShell)
-# Usage:  irm https://raw.githubusercontent.com/RZX00/牛来-skills/main/install.ps1 | iex
+# Usage:  irm https://raw.githubusercontent.com/RZX00/niu-lai-skills/main/install.ps1 | iex
 #Requires -Version 5
 $ErrorActionPreference = 'Stop'
 
-$RawUrl = 'https://raw.githubusercontent.com/RZX00/牛来-skills/main/skills/niulai/SKILL.md'
+$RawUrl = 'https://raw.githubusercontent.com/RZX00/niu-lai-skills/main/skills/niulai/SKILL.md'
 $Targets = @(
     (Join-Path $HOME '.claude\skills\niulai'),
     (Join-Path $HOME '.agents\skills\niulai'),

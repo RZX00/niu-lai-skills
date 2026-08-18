@@ -7,7 +7,7 @@
   "metadata": {
     "description": "牛来口癖 skill：像句尾「喵~」一样，始终挂着短句「牛来！」",
     "version": "1.0.0",
-    "repository": "https://github.com/RZX00/牛来-skills"
+    "repository": "https://github.com/RZX00/niu-lai-skills"
   },
   "plugins": [
     {

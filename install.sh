@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 # 牛来 skill installer (macOS / Linux / WSL)
-# Usage:  curl -fsSL https://raw.githubusercontent.com/RZX00/牛来-skills/main/install.sh | bash
+# Usage:  curl -fsSL https://raw.githubusercontent.com/RZX00/niu-lai-skills/main/install.sh | bash
 set -euo pipefail
 
-RAW_URL="https://raw.githubusercontent.com/RZX00/牛来-skills/main/skills/niulai/SKILL.md"
+RAW_URL="https://raw.githubusercontent.com/RZX00/niu-lai-skills/main/skills/niulai/SKILL.md"
 TARGETS=(
   "$HOME/.claude/skills/niulai"
   "$HOME/.agents/skills/niulai"
