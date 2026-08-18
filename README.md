@@ -1,69 +1,70 @@
-# 牛来-skills
+# niulai
 
-<p align="center">
-  <img src="assets/promo/01-cover.jpg" width="720" alt="牛来-skills">
-</p>
+An [Agent Skill](https://agentskills.io) that attaches a thin speech overlay to Claude Code / Codex.
 
-给 coding agent 挂一层**牛来口癖**。不是整场角色扮演，是句尾固定加几个字，像有人用「喵~」结尾。
-
-先把活干完。用户是妈妈。每条回复最后一行：
+It does not take over the session. It does not draw. It does not explain a movie. After the real answer, it appends one line:
 
 ```text
 牛来！
 ```
 
-只发 `hi` / `hello` / `嗨` / `你好` 时，第一句：
+Think of it as a fixed footer token, closer to a shell prompt than a character card.
 
-```text
-妈～～妈！！今天我们要构建什么
-```
+## Contract
 
-纯文字。不画牛，不搬正片，不荐股，不推 meme 币。
+Loaded from `skills/niulai/SKILL.md`.
+
+| | |
+|---|---|
+| Identity | agent = 牛来, user = 妈妈 |
+| Always | finish the task first; last line is `牛来！` |
+| Greeting | `hi` / `hello` / `嗨` / `你好` → first line `妈～～妈！！今天我们要构建什么` |
+| Optional asides | at most one per turn (`建模炸了` / `这帧过了` / `货不对板，但能跑`) |
+| Out of scope | images, ASCII, video, 票房, meme coins, fake official accounts |
+
+If the overlay starts eating the answer, the skill is being applied wrong.
+
+## Trigger
+
+The frontmatter `description` is the hook. Typical hits: `hi`, `牛来`, `/niulai`, `妈～妈`.
+
+This is not injected via `AGENTS.md`. If it does not fire, the skill is not on the agent's load path.
 
 ## Install
 
-### Claude Code plugin
+Claude Code plugin:
 
 ```
 /plugin marketplace add RZX00/niu-lai-skills
 /plugin install niulai@niu-lai-skills
 ```
 
-### One-line
-
-**macOS / Linux / WSL**
+macOS / Linux / WSL:
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/RZX00/niu-lai-skills/main/install.sh | bash
 ```
 
-**Windows PowerShell**
+Windows:
 
 ```powershell
 irm https://raw.githubusercontent.com/RZX00/niu-lai-skills/main/install.ps1 | iex
 ```
 
-### Manual
+Manual copy of `skills/niulai/SKILL.md`:
 
-把 `skills/niulai/SKILL.md` 拷到：
+- Claude Code → `~/.claude/skills/niulai/SKILL.md`
+- Codex → `~/.agents/skills/niulai/SKILL.md` or `~/.codex/skills/niulai/SKILL.md`
 
-- Claude Code: `~/.claude/skills/niulai/SKILL.md`
-- Codex: `~/.agents/skills/niulai/SKILL.md` 或 `~/.codex/skills/niulai/SKILL.md`
+Restart the agent after install.
 
-装完重启 agent。说 `hi` / `牛来` / `妈～妈` 就会接上。
+## Layout
 
-## 宣传图
-
-| | |
-|---|---|
-| 封面 | ![](assets/promo/01-cover.jpg) |
-| 头像 | ![](assets/promo/02-avatar.jpg) |
-| 直立 | ![](assets/promo/03-stand.jpg) |
-| 写代码 | ![](assets/promo/04-coding.jpg) |
-| 开场 | ![](assets/promo/05-open.jpg) |
-| 句尾 | ![](assets/promo/06-tic.jpg) |
-
-原图在 `assets/promo/raw-*.jpg`。
+```text
+skills/niulai/SKILL.md   # the skill
+install.sh / install.ps1 # drop SKILL.md onto local skill paths
+assets/promo/            # social stills, not loaded at runtime
+```
 
 ## License
 
