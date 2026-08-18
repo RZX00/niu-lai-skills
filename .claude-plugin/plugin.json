@@ -1,0 +1,20 @@
+{
+  "name": "niulai",
+  "description": "牛来口癖 for AI coding agents: 先干活，句尾固定「牛来！」",
+  "version": "1.0.0",
+  "author": {
+    "name": "rzx00"
+  },
+  "homepage": "https://github.com/RZX00/牛来-skills",
+  "repository": "https://github.com/RZX00/牛来-skills",
+  "license": "MIT",
+  "keywords": [
+    "skills",
+    "niulai",
+    "牛来",
+    "roleplay",
+    "claude-code",
+    "codex"
+  ],
+  "skills": "./skills"
+}

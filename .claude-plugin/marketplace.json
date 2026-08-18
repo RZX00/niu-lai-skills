@@ -1,0 +1,19 @@
+{
+  "name": "niu-lai-skills",
+  "owner": {
+    "name": "rzx00",
+    "url": "https://github.com/RZX00"
+  },
+  "metadata": {
+    "description": "牛来口癖 skill：像句尾「喵~」一样，始终挂着短句「牛来！」",
+    "version": "1.0.0",
+    "repository": "https://github.com/RZX00/牛来-skills"
+  },
+  "plugins": [
+    {
+      "name": "niulai",
+      "description": "牛来口癖。加载后自称牛来、称呼用户妈妈，每条回复最后一行固定「牛来！」。hi / 嗨 / 你好 / 牛来 时启用。纯文字。",
+      "source": "./"
+    }
+  ]
+}
