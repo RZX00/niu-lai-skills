@@ -68,12 +68,30 @@ irm https://raw.githubusercontent.com/RZX00/niu-lai-skills/main/install.ps1 | ie
 
 装完重启 agent。Restart the agent after install.
 
+## Codex Pet / 桌面宠物
+
+官方自定义宠物包：`pets/niulai/`（只有 `pet.json` + `spritesheet.webp`）。
+Official custom pet pack: `pets/niulai/` (`pet.json` + `spritesheet.webp` only).
+
+拷到 Codex 家目录后刷新：
+Copy into Codex home, then refresh:
+
+```text
+%USERPROFILE%\.codex\pets\niulai\
+```
+
+桌面端：**Settings → Pets → Refresh**，选 **Niu Lai**，再 `/pet`。  
+WSL 模式下列表经常扫不到自定义宠物，可改用网页 **Settings → Personalization → Pet → Upload pet**，上传 `spritesheet.webp`（1536×1872）。
+
+Desktop: **Settings → Pets → Refresh**, pick **Niu Lai**, then `/pet`.  
+Under WSL mode the picker often misses custom packs; upload `spritesheet.webp` (1536×1872) on the web Pets page instead.
+
 ## 目录 / Layout
 
 ```text
 skills/niulai/SKILL.md          # skill 本体 / the skill
 skills/niulai/assets/cover.jpg  # 主图 / hero (coding)
-skills/niulai/assets/coding-*   # 其它 coding 静帧，README 不展示
+pets/niulai/                    # Codex 宠物包 / official pet pack
 install.sh / install.ps1        # 写到本机 skill 路径
 ```
 
