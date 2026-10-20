@@ -1,0 +1,23 @@
+{
+  "id": "msg_FGaAX7SkNnqid8c5h3dNkdWp",
+  "model": "claude-sonnet-5-5",
+  "created": 1792492629,
+  "object": "chat.completion",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "使用 `AbortController` 来设置超时：\n\n```javascript\nconst controller = new AbortController();\nconst timeoutId = setTimeout(() => controller.abort(), 5000);\n\ntry {\n  const response = await fetch('https://example.com', {\n    signal: controller.signal\n  });\n  clearTimeout(timeoutId);\n  const data = await response.json();\n} catch (error) {\n  if (error.name === 'AbortError') {\n    console.log('请求超时');\n  } else {\n    console.log('请求失败:', error);\n  }\n}\n```\n\n或者封装成可复用的函数：\n\n```javascript\nasync function fetchWithTimeout(url, options = {}, timeout = 5000) {\n  const controller = new AbortController();\n  const timeoutId = setTimeout(() => controller.abort(), timeout);\n  \n  try {\n    const response = await fetch(url, {\n      ...options,\n      signal: controller.signal\n    });\n    clearTimeout(timeoutId);\n    return response;\n  } catch (error) {\n    clearTimeout(timeoutId);\n    throw error;\n  }\n}\n\n// 使用\nconst response = await fetchWithTimeout('https://example.com', {}, 5000);\n```\n\n注意 `signal` 会中断整个请求，包括等待响应和读取响应体的时间。"
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "total_tokens": 313,
+    "prompt_tokens": 21,
+    "completion_tokens": 292,
+    "cache_read_input_tokens": 60,
+    "cache_creation_input_tokens": 3
+  }
+}

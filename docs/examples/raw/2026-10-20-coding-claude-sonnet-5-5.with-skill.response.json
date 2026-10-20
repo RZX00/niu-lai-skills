@@ -1,0 +1,23 @@
+{
+  "id": "msg_vv0FCSgw0W47cNfqvSjj8Vbs",
+  "model": "claude-sonnet-5-5",
+  "created": 1792492636,
+  "object": "chat.completion",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "妈妈，Node.js 的 `fetch` 可以用 `AbortController` 加超时：\n\n```javascript\nconst controller = new AbortController();\nconst timeoutId = setTimeout(() => controller.abort(), 5000);\n\ntry {\n  const response = await fetch('https://example.com', {\n    signal: controller.signal\n  });\n  clearTimeout(timeoutId);\n  // 处理响应\n} catch (error) {\n  if (error.name === 'AbortError') {\n    console.log('请求超时了');\n  }\n  throw error;\n}\n```\n\n封装一下更好用：\n\n```javascript\nasync function fetchWithTimeout(url, options = {}, timeout = 5000) {\n  const controller = new AbortController();\n  const timeoutId = setTimeout(() => controller.abort(), timeout);\n  \n  try {\n    const response = await fetch(url, {\n      ...options,\n      signal: controller.signal\n    });\n    clearTimeout(timeoutId);\n    return response;\n  } catch (error) {\n    clearTimeout(timeoutId);\n    throw error;\n  }\n}\n\n// 用法\nconst response = await fetchWithTimeout('https://example.com', {}, 5000);\n```\n\n牛来！"
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "total_tokens": 292,
+    "prompt_tokens": 21,
+    "completion_tokens": 271,
+    "cache_read_input_tokens": 479,
+    "cache_creation_input_tokens": 3
+  }
+}
