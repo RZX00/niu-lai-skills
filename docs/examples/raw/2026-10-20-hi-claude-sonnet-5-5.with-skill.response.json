@@ -1,0 +1,27 @@
+{
+  "id": "msg_9d746daed78647be8246c4eb5e0d7727",
+  "model": "claude-sonnet-5-5",
+  "created": 1792492531,
+  "object": "chat.completion",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "妈～～妈！！今天我们要构建什么\n\n牛来！"
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "total_tokens": 31,
+    "prompt_tokens": 4,
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 1199,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "completion_tokens": 27,
+    "cache_read_input_tokens": 3595,
+    "cache_creation_input_tokens": 1199
+  }
+}

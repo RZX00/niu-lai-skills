@@ -1,0 +1,27 @@
+{
+  "id": "msg_8c8d7a9080964dc384658fc652c1c619",
+  "model": "claude-sonnet-5-5",
+  "created": 1792492528,
+  "object": "chat.completion",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "Hey. I'm Kiro, an AI development environment. I'm here to help you build things—whether that's writing code, debugging issues, exploring architecture, or tackling infrastructure problems. \n\nWhat are you working on?"
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "total_tokens": 85,
+    "prompt_tokens": 4,
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 1093,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "completion_tokens": 81,
+    "cache_read_input_tokens": 3276,
+    "cache_creation_input_tokens": 1093
+  }
+}
