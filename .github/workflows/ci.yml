@@ -1,0 +1,79 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Skill, manifests, installers and links
+        run: node tools/check.mjs
+      - name: Shell scripts
+        run: shellcheck install.sh pets/install.sh
+      - name: evals/compare.mjs parses
+        run: node --check evals/compare.mjs
+
+  install-sh:
+    name: install.sh (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install from the checkout into an empty home, twice
+        run: |
+          export HOME="$(mktemp -d)"
+          bash install.sh
+          bash install.sh
+          for dir in .claude .agents .codex; do
+            cmp skills/niulai/SKILL.md "$HOME/$dir/skills/niulai/SKILL.md"
+          done
+      - name: Install the way the README says (piped, downloads main)
+        run: |
+          export HOME="$(mktemp -d)"
+          bash < install.sh
+          for dir in .claude .agents .codex; do
+            head -n 2 "$HOME/$dir/skills/niulai/SKILL.md" | grep -qx 'name: niulai'
+          done
+
+  install-ps1:
+    name: install.ps1 (${{ matrix.shell }})
+    runs-on: windows-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        # powershell is Windows PowerShell 5.1, the version the README names; pwsh is PowerShell 7.
+        shell: [powershell, pwsh]
+    defaults:
+      run:
+        shell: ${{ matrix.shell }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install from the checkout
+        run: |
+          .\install.ps1
+          $want = (Get-FileHash skills\niulai\SKILL.md).Hash
+          foreach ($dir in '.claude', '.agents', '.codex') {
+            $got = (Get-FileHash (Join-Path $HOME "$dir\skills\niulai\SKILL.md")).Hash
+            if ($got -ne $want) { throw "$dir copy differs from skills\niulai\SKILL.md" }
+          }
+      - name: Install the way the README says (piped, downloads main)
+        run: |
+          Get-Content -Raw -Encoding UTF8 install.ps1 | Invoke-Expression
+          foreach ($dir in '.claude', '.agents', '.codex') {
+            $bytes = [System.IO.File]::ReadAllBytes((Join-Path $HOME "$dir\skills\niulai\SKILL.md"))
+            # 0x2D is '-': the file must start with the front matter fence, not a byte order mark.
+            if ($bytes[0] -ne 0x2D) { throw "$dir copy does not start with '---' (first byte $($bytes[0]))" }
+          }

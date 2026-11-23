@@ -6,6 +6,8 @@
   <img src="skills/niulai/assets/cover.jpg" width="640" alt="3D 小牛坐在昏暗房间里的老式 CRT 显示器前，桌上有键盘、马克杯和散落的纸，屏幕里只有一个绿色方块">
 </p>
 
+[![CI](https://github.com/RZX00/niu-lai-skills/actions/workflows/ci.yml/badge.svg)](https://github.com/RZX00/niu-lai-skills/actions/workflows/ci.yml)
+
 ## 实际效果
 
 装上技能后，对 Agent 说 `hi`，回复原文：
